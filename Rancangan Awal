@@ -1,0 +1,60 @@
+
+kode wilayah
+level
+provinsi
+nama daerah
+upp
+ipp
+
+Kode Wilayah
+I
+II
+III
+
+Level
+Provinsi
+Kabupaten
+Kota
+
+UPP
+PTSP
+Bappeda
+SKCK
+SIM
+Disdukcapil
+RSUD
+
+
+Tabel Rancangan
+
+master_level
+-id_level(PK)
+-jenis_level
+---I
+---II
+---III
+
+master_wilayah
+-id_wilayah(PK)
+-jenis_wilayah
+---provinsi
+---kota
+---kabupaten
+
+master_upp
+-id_upp (PK)
+-jenis_upp
+---PTSP
+---Bappeda
+---SKCK
+---SIM
+---Disdukcapil
+---RSUD
+
+tabel_indeks
+-id_nilai(PK)
+-kode_wilayah(FK)->master_wilayah
+-jenis_level(FK)->master_level
+-jenis_upp(FK)->master_upp
+-ipp
+-tahun
