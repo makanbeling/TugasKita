@@ -35,16 +35,24 @@ master_level
 ---III
 -keterangan
 
-master_wilayah
+master_daerah
 -id_wilayah(PK)
 -jenis_wilayah
 ---provinsi
 ---kota
 ---kabupaten
+-nama_wilayah
 
 master_upp
 -id_upp (PK)
 -jenis_upp
+---PTSP
+---Bappeda
+---SKCK
+---SIM
+---Disdukcapil
+---RSUD
+-keterangan
 ---PTSP
 ---Bappeda
 ---SKCK
