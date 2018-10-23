@@ -24,7 +24,8 @@
         "phpoffice/phpspreadsheet": "^1.4",
         "mpdf/mpdf": "^7.1",
         "dompdf/dompdf": "^0.8.2",
-        "kartik-v/yii2-widgets": "dev-master"
+        "kartik-v/yii2-widgets": "dev-master",
+        "aryelds/yii2-sweet-alert": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
