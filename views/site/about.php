@@ -4,13 +4,18 @@
 
 use kartik\widgets\Select2;
 use yii\helpers\Html;
+<<<<<<< HEAD
 use dosamigos\chartjs\ChartJs;
+=======
+use yii2mod\alert\Alert;
+>>>>>>> b4594cf7de622c8b051b42d92e4bd593355e6a65
 
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
+<<<<<<< HEAD
     <div class="col-lg-6">
     </div>
     <div class="col-lg-6">
@@ -115,4 +120,21 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
         </div>
     </div>
+=======
+    <?php
+    if (1==1){
+        Yii::$app->session->setFlash('', $this->title);
+    }else{
+        Yii::$app->session->setFlash('error', 'error is happened');
+    }
+    ?>
+    <?php
+    echo Alert::widget();
+    ?>
+    <p>
+        This is the About page. You may modify the following file to customize its content:
+    </p>
+
+    <code><?= __FILE__ ?></code>
+>>>>>>> b4594cf7de622c8b051b42d92e4bd593355e6a65
 </div>
