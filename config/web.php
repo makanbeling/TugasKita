@@ -5,6 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'name'=>'IPP Dashboard',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -53,6 +54,7 @@ $config = [
 
     ],
     'params' => $params,
+    'defaultRoute' => 'nilai-upp/index',
 ];
 
 if (YII_ENV_DEV) {

@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'nama_daerah',
             'id_upp',
             'ipp',
+            'tahun',
             'p_1_a_K1',
             'p_1_a_K2',
             'p_1_a_k3',

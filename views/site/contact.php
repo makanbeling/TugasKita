@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
+
 /* @var $model app\models\ContactForm */
 
 use yii\helpers\Html;
@@ -26,41 +27,81 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php if (Yii::$app->mailer->useFileTransport): ?>
                 Because the application is in development mode, the email is not sent but saved as
                 a file under <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>.
-                Please configure the <code>useFileTransport</code> property of the <code>mail</code>
+                                                                                                    Please configure the
+                <code>useFileTransport</code> property of the <code>mail</code>
                 application component to be false to enable email sending.
             <?php endif; ?>
         </p>
 
     <?php else: ?>
-
-        <p>
-            If you have business inquiries or other questions, please fill out the following form to contact us.
-            Thank you.
-        </p>
-
         <div class="row">
-            <div class="col-lg-5">
-
-                <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-
-                    <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
-
-                    <?= $form->field($model, 'email') ?>
-
-                    <?= $form->field($model, 'subject') ?>
-
-                    <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
-
-                    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                    ]) ?>
-
-                    <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-                    </div>
-
-                <?php ActiveForm::end(); ?>
-
+            <div class="col-lg-6">
+                <img class="col-lg-12"
+                     src="https://upload.wikimedia.org/wikipedia/id/thumb/3/33/Peta_indonesia.jpg/800px-Peta_indonesia.jpg"
+                     alt="peta kita">
+                <img class="col-lg-12"
+                     src="https://upload.wikimedia.org/wikipedia/id/thumb/3/33/Peta_indonesia.jpg/800px-Peta_indonesia.jpg"
+                     alt="peta kita">
+            </div>
+            <div class="col-lg-6">
+                <p>IP Nasional</p>
+                <p>Wilayah I</p>
+                <p>Wilayah II</p>
+                <p>Wilayah III</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Range Nilai</th>
+                        <th scope="col">Kategori</th>
+                        <th scope="col">Makna</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <th scope="col">0-1,00</th>
+                        <td>F</td>
+                        <td>Gagal</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">1,01-1,50</th>
+                        <td>E</td>
+                        <td>Sangat Buruk</td>
+                    </tr>
+                    <tr>
+                        <td>1,51-2,00</td>
+                        <td>D</td>
+                        <td>Buruk</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">2,01-2,50</th>
+                        <td>C-</td>
+                        <td>Cukup (DC)</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">2,51-3,00</th>
+                        <td>C</td>
+                        <td>Cukup</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">3,01-3,50</th>
+                        <td>B-</td>
+                        <td>Baik (DC)</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">3,51-4,00</th>
+                        <td>B</td>
+                        <td>Baik</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">4,01-4,50</th>
+                        <td>B-</td>
+                        <td>Sangat Baik</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">4,51-5,00</th>
+                        <td>B</td>
+                        <td>Pelayanan Prima</td>
+                    </tr>
+                </table>
             </div>
         </div>
 

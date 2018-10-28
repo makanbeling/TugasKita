@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\NilaiUppSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Nilai Upps';
+$this->title = 'Tabel Nilai IPP';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="nilai-upp-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Nilai Upp', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Impor IPP', ['import'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,13 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id_nilai',
+            'id_nilai',
             'id_level',
             'provinsi',
             'id_daerah',
             'nama_daerah',
-            'id_upp',
-            'ipp',
+            //'id_upp',
+            //'ipp',
+            //'tahun',
             //'p_1_a_K1',
             //'p_1_a_K2',
             //'p_1_a_k3',

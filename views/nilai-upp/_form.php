@@ -24,6 +24,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ipp')->textInput() ?>
 
+    <?= $form->field($model, 'tahun')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'p_1_a_K1')->textInput() ?>
 
     <?= $form->field($model, 'p_1_a_K2')->textInput() ?>

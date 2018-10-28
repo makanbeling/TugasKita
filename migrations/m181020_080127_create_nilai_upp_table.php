@@ -20,6 +20,7 @@ class m181020_080127_create_nilai_upp_table extends Migration
             'nama_daerah'=>$this->string(),
             'id_upp' => $this->integer(),
             'ipp' => $this->integer(),
+            'tahun'=> 'YEAR(4)',
             'p_1_a_K1' => $this->integer(),
             'p_1_a_K2' => $this->integer(),
             'p_1_a_k3' => $this->integer(),

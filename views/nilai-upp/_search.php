@@ -32,6 +32,8 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'ipp') ?>
 
+    <?php // echo $form->field($model, 'tahun') ?>
+
     <?php // echo $form->field($model, 'p_1_a_K1') ?>
 
     <?php // echo $form->field($model, 'p_1_a_K2') ?>
