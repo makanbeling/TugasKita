@@ -1,0 +1,111 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+use app\models\NilaiBaru;
+
+/**
+ * NilaiBaruSearch represents the model behind the search form of `app\models\NilaiBaru`.
+ */
+class NilaiBaruSearch extends NilaiBaru
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['id', 'p_1_a_K1', 'p_1_a_K2', 'p_1_a_k3', 'p_1_a_P', 'p_1_a_T', 'p_1_a_Ak', 'p_1_a_As', 'p_1_a_B', 'p_1_b_T', 'p_1_c_P', 'p_1_c_T', 'p_1_c_Ak', 'p_1_c_B', 'p_2_a_Ak', 'p_2_b_Ak_1', 'p_2_b_Ak_2', 'p_2_d_K', 'p_2_e_K1', 'p_2_e_K2', 'p_2_g_Ak', 'p_3_a_As', 'p_3_b_K1', 'p_3_b_As', 'p_3_c_K', 'p_3_d_As1', 'p_3_e_As2', 'p_3_e_As4', 'p_4_a_T', 'p_4_a_B', 'p_4_a_Ak1', 'p_4_a_Ak2', 'p_4_b_T', 'p_5_a_K', 'p_5_a_As', 'p_5_b_K', 'p_5_b_As', 'p_6_'], 'integer'],
+            [['prov', 'prov_kab_kot', 'kode', 'unit_layanan', 'tahun', 'jenis_wilayah'], 'safe'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function scenarios()
+    {
+        // bypass scenarios() implementation in the parent class
+        return Model::scenarios();
+    }
+
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = NilaiBaru::find();
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'tahun' => $this->tahun,
+            'p_1_a_K1' => $this->p_1_a_K1,
+            'p_1_a_K2' => $this->p_1_a_K2,
+            'p_1_a_k3' => $this->p_1_a_k3,
+            'p_1_a_P' => $this->p_1_a_P,
+            'p_1_a_T' => $this->p_1_a_T,
+            'p_1_a_Ak' => $this->p_1_a_Ak,
+            'p_1_a_As' => $this->p_1_a_As,
+            'p_1_a_B' => $this->p_1_a_B,
+            'p_1_b_T' => $this->p_1_b_T,
+            'p_1_c_P' => $this->p_1_c_P,
+            'p_1_c_T' => $this->p_1_c_T,
+            'p_1_c_Ak' => $this->p_1_c_Ak,
+            'p_1_c_B' => $this->p_1_c_B,
+            'p_2_a_Ak' => $this->p_2_a_Ak,
+            'p_2_b_Ak_1' => $this->p_2_b_Ak_1,
+            'p_2_b_Ak_2' => $this->p_2_b_Ak_2,
+            'p_2_d_K' => $this->p_2_d_K,
+            'p_2_e_K1' => $this->p_2_e_K1,
+            'p_2_e_K2' => $this->p_2_e_K2,
+            'p_2_g_Ak' => $this->p_2_g_Ak,
+            'p_3_a_As' => $this->p_3_a_As,
+            'p_3_b_K1' => $this->p_3_b_K1,
+            'p_3_b_As' => $this->p_3_b_As,
+            'p_3_c_K' => $this->p_3_c_K,
+            'p_3_d_As1' => $this->p_3_d_As1,
+            'p_3_e_As2' => $this->p_3_e_As2,
+            'p_3_e_As4' => $this->p_3_e_As4,
+            'p_4_a_T' => $this->p_4_a_T,
+            'p_4_a_B' => $this->p_4_a_B,
+            'p_4_a_Ak1' => $this->p_4_a_Ak1,
+            'p_4_a_Ak2' => $this->p_4_a_Ak2,
+            'p_4_b_T' => $this->p_4_b_T,
+            'p_5_a_K' => $this->p_5_a_K,
+            'p_5_a_As' => $this->p_5_a_As,
+            'p_5_b_K' => $this->p_5_b_K,
+            'p_5_b_As' => $this->p_5_b_As,
+            'p_6_' => $this->p_6_,
+        ]);
+
+        $query->andFilterWhere(['like', 'prov', $this->prov])
+            ->andFilterWhere(['like', 'prov_kab_kot', $this->prov_kab_kot])
+            ->andFilterWhere(['like', 'kode', $this->kode])
+            ->andFilterWhere(['like', 'unit_layanan', $this->unit_layanan])
+            ->andFilterWhere(['like', 'jenis_wilayah', $this->jenis_wilayah]);
+
+        return $dataProvider;
+    }
+}

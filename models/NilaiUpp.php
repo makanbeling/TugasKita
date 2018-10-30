@@ -13,7 +13,7 @@ use Yii;
  * @property int $id_daerah
  * @property string $nama_daerah
  * @property int $id_upp
- * @property int $ipp
+ * @property double $ipp
  * @property string $tahun
  * @property int $p_1_a_K1
  * @property int $p_1_a_K2
@@ -89,6 +89,10 @@ use Yii;
  * @property double $r_5_b_K
  * @property double $r_5_b_As
  * @property double $r_6_
+ *
+ * @property MasterDaerah $daerah
+ * @property MasterLevel $level
+ * @property MasterUpp $upp
  */
 class NilaiUpp extends \yii\db\ActiveRecord
 {
@@ -106,10 +110,13 @@ class NilaiUpp extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_level', 'id_daerah', 'id_upp', 'ipp', 'p_1_a_K1', 'p_1_a_K2', 'p_1_a_k3', 'p_1_a_P', 'p_1_a_T', 'p_1_a_Ak', 'p_1_a_As', 'p_1_a_B', 'p_1_b_T', 'p_1_c_P', 'p_1_c_T', 'p_1_c_Ak', 'p_1_c_B', 'p_2_a_Ak', 'p_2_b_Ak_1', 'p_2_b_Ak_2', 'p_2_d_K', 'p_2_e_K1', 'p_2_e_K2', 'p_2_g_Ak', 'p_3_a_As', 'p_3_b_K1', 'p_3_b_As', 'p_3_c_K', 'p_3_d_As1', 'p_3_e_As2', 'p_3_e_As4', 'p_4_a_T', 'p_4_a_B', 'p_4_a_Ak1', 'p_4_a_Ak2', 'p_4_b_T', 'p_5_a_K', 'p_5_a_As', 'p_5_b_K', 'p_5_b_As', 'p_6_'], 'integer'],
+            [['id_level', 'id_daerah', 'id_upp', 'p_1_a_K1', 'p_1_a_K2', 'p_1_a_k3', 'p_1_a_P', 'p_1_a_T', 'p_1_a_Ak', 'p_1_a_As', 'p_1_a_B', 'p_1_b_T', 'p_1_c_P', 'p_1_c_T', 'p_1_c_Ak', 'p_1_c_B', 'p_2_a_Ak', 'p_2_b_Ak_1', 'p_2_b_Ak_2', 'p_2_d_K', 'p_2_e_K1', 'p_2_e_K2', 'p_2_g_Ak', 'p_3_a_As', 'p_3_b_K1', 'p_3_b_As', 'p_3_c_K', 'p_3_d_As1', 'p_3_e_As2', 'p_3_e_As4', 'p_4_a_T', 'p_4_a_B', 'p_4_a_Ak1', 'p_4_a_Ak2', 'p_4_b_T', 'p_5_a_K', 'p_5_a_As', 'p_5_b_K', 'p_5_b_As', 'p_6_'], 'integer'],
+            [['ipp', 'r_1_a_K1', 'r_1_a_K2', 'r_1_a_k3', 'r_1_a_P', 'r_1_a_T', 'r_1_a_Ak', 'r_1_a_As', 'r_1_a_B', 'r_1_b_T', 'r_1_c_P', 'r_1_c_T', 'r_1_c_Ak', 'r_1_c_B', 'r_2_a_Ak', 'r_2_b_Ak_1', 'r_2_b_Ak_2', 'r_2_d_K', 'r_2_e_K1', 'r_2_e_K2', 'r_2_g_Ak', 'r_3_a_As', 'r_3_b_K1', 'r_3_b_As', 'r_3_c_K', 'r_3_d_As1', 'r_3_e_As2', 'r_3_e_As4', 'r_4_a_T', 'r_4_a_B', 'r_4_a_Ak1', 'r_4_a_Ak2', 'r_4_b_T', 'r_5_a_K', 'r_5_a_As', 'r_5_b_K', 'r_5_b_As', 'r_6_'], 'number'],
             [['tahun'], 'safe'],
-            [['r_1_a_K1', 'r_1_a_K2', 'r_1_a_k3', 'r_1_a_P', 'r_1_a_T', 'r_1_a_Ak', 'r_1_a_As', 'r_1_a_B', 'r_1_b_T', 'r_1_c_P', 'r_1_c_T', 'r_1_c_Ak', 'r_1_c_B', 'r_2_a_Ak', 'r_2_b_Ak_1', 'r_2_b_Ak_2', 'r_2_d_K', 'r_2_e_K1', 'r_2_e_K2', 'r_2_g_Ak', 'r_3_a_As', 'r_3_b_K1', 'r_3_b_As', 'r_3_c_K', 'r_3_d_As1', 'r_3_e_As2', 'r_3_e_As4', 'r_4_a_T', 'r_4_a_B', 'r_4_a_Ak1', 'r_4_a_Ak2', 'r_4_b_T', 'r_5_a_K', 'r_5_a_As', 'r_5_b_K', 'r_5_b_As', 'r_6_'], 'number'],
             [['provinsi', 'nama_daerah'], 'string', 'max' => 255],
+            [['id_daerah'], 'exist', 'skipOnError' => true, 'targetClass' => MasterDaerah::className(), 'targetAttribute' => ['id_daerah' => 'id_daerah']],
+            [['id_level'], 'exist', 'skipOnError' => true, 'targetClass' => MasterLevel::className(), 'targetAttribute' => ['id_level' => 'id_level']],
+            [['id_upp'], 'exist', 'skipOnError' => true, 'targetClass' => MasterUpp::className(), 'targetAttribute' => ['id_upp' => 'id_upp']],
         ];
     }
 
@@ -202,6 +209,30 @@ class NilaiUpp extends \yii\db\ActiveRecord
             'r_5_b_As' => 'R 5 B  As',
             'r_6_' => 'R 6',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDaerah()
+    {
+        return $this->hasOne(MasterDaerah::className(), ['id_daerah' => 'id_daerah']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLevel()
+    {
+        return $this->hasOne(MasterLevel::className(), ['id_level' => 'id_level']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpp()
+    {
+        return $this->hasOne(MasterUpp::className(), ['id_upp' => 'id_upp']);
     }
 
     /**

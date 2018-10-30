@@ -8,7 +8,6 @@ use Yii;
 use app\models\NilaiUpp;
 use app\models\NilaiUppSearch;
 use yii\helpers\ArrayHelper;
-use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -158,16 +157,16 @@ class NilaiUppController extends Controller
                 $model = new NilaiUpp();
                 $model->id_level = 3;
                 $model->provinsi = 'Provinsi Ini';
-                $model->id_daerah = 1200;//$modelImport->id_daerah;
+                $model->id_daerah = $modelImport->id_daerah;
                 $model->nama_daerah = 'sumus';//MasterDaerah::find()->where(['id_daerah'=>1200])->one()->nama_daerah;
-                $model->id_upp = 2;//$modelImport->id_upp;
-                $model->ipp = 3.76;//$sheetData[59]['D'];
-                $model->tahun = 2012;//$modelImport->tahun;
+                $model->id_upp = $modelImport->id_upp;
+                $model->ipp = $sheetData[59]['D'];
+                $model->tahun = $modelImport->tahun;
                 if($model->save()){
                     Yii::$app->getSession()->setFlash('success', 'Success');
                 };
-                /*$model->p_1_a_K1 = (int)$sheetData['G'][9];
-                $model->p_1_a_K2 = (int)$sheetData['G'][10];
+                $model->p_1_a_K1 = (int)$sheetData[9]['G'];
+                /*$model->p_1_a_K2 = (int)$sheetData['G'][10];
                 $model->p_1_a_k3 = (int)$sheetData['G'][11];
                 $model->p_1_a_P = (int)$sheetData['G'][12];
                 $model->p_1_a_T = (int)$sheetData['G'][13];
@@ -244,11 +243,26 @@ class NilaiUppController extends Controller
                 Yii::$app->getSession()->setFlash('error', 'Error');
             }
         }
-
         return $this->render('import', [
             'modelImport' => $modelImport,
             'daerah' => ArrayHelper::map(MasterDaerah::find()->all(), 'id_daerah', 'nama_daerah'),
             'upp' => ArrayHelper::map(MasterUpp::find()->all(), 'id_upp', 'jenis_upp'),
         ]);
+    }
+
+    public function actionForm()
+    {
+        $model = new \yii\base\DynamicModel([
+            'name', 'email', 'address'
+        ]);
+        $model->addRule(['name','email'], 'required')
+            ->addRule(['email'], 'email')
+            ->addRule('address', 'string',['max'=>32]);
+
+        if($model->load(Yii::$app->request->post())){
+            // do somenthing with model
+            return $this->render('views',['model'=>$model]);
+        }
+        return $this->render('form', ['model'=>$model]);
     }
 }

@@ -19,7 +19,7 @@ class m181020_080127_create_nilai_upp_table extends Migration
             'id_daerah' => $this->integer(),
             'nama_daerah'=>$this->string(),
             'id_upp' => $this->integer(),
-            'ipp' => $this->integer(),
+            'ipp' => $this->float(3),
             'tahun'=> 'YEAR(4)',
             'p_1_a_K1' => $this->integer(),
             'p_1_a_K2' => $this->integer(),
@@ -96,6 +96,9 @@ class m181020_080127_create_nilai_upp_table extends Migration
             'r_5_b_As'=>$this->float(3),
             'r_6_'=>$this->float(3),
         ]);
+        $this->addForeignKey('fk-master-level-id-level','nilai_upp','id_level','master_level','id_level');
+        $this->addForeignKey('fk-master-daerah-id-daerah','nilai_upp','id_daerah','master_daerah','id_daerah');
+        $this->addForeignKey('fk-master-upp-id-upp','nilai_upp','id_upp','master_upp','id_upp');
     }
 
     /**

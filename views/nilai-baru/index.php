@@ -4,20 +4,20 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\NilaiUppSearch */
+/* @var $searchModel app\models\NilaiBaruSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Nilai Upps';
+$this->title = 'Nilai Barus';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="nilai-upp-index">
+<div class="nilai-baru-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Nilai Upp', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Nilai Baru', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,14 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_nilai',
-            'id_level',
-            'provinsi',
-            'id_daerah',
-            'nama_daerah',
-            //'id_upp',
-            //'ipp',
+            'id',
+            'prov',
+            'prov_kab_kot',
+            'kode',
+            'unit_layanan',
             //'tahun',
+            //'jenis_wilayah',
             //'p_1_a_K1',
             //'p_1_a_K2',
             //'p_1_a_k3',
@@ -71,43 +70,6 @@ $this->params['breadcrumbs'][] = $this->title;
             //'p_5_b_K',
             //'p_5_b_As',
             //'p_6_',
-            //'r_1_a_K1',
-            //'r_1_a_K2',
-            //'r_1_a_k3',
-            //'r_1_a_P',
-            //'r_1_a_T',
-            //'r_1_a_Ak',
-            //'r_1_a_As',
-            //'r_1_a_B',
-            //'r_1_b_T',
-            //'r_1_c_P',
-            //'r_1_c_T',
-            //'r_1_c_Ak',
-            //'r_1_c_B',
-            //'r_2_a_Ak',
-            //'r_2_b_Ak_1',
-            //'r_2_b_Ak_2',
-            //'r_2_d_K',
-            //'r_2_e_K1',
-            //'r_2_e_K2',
-            //'r_2_g_Ak',
-            //'r_3_a_As',
-            //'r_3_b_K1',
-            //'r_3_b_As',
-            //'r_3_c_K',
-            //'r_3_d_As1',
-            //'r_3_e_As2',
-            //'r_3_e_As4',
-            //'r_4_a_T',
-            //'r_4_a_B',
-            //'r_4_a_Ak1',
-            //'r_4_a_Ak2',
-            //'r_4_b_T',
-            //'r_5_a_K',
-            //'r_5_a_As',
-            //'r_5_b_K',
-            //'r_5_b_As',
-            //'r_6_',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
