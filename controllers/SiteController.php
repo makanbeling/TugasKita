@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\NilaiBaru;
 use app\models\UploadForm;
 use Yii;
 use yii\filters\AccessControl;
@@ -144,5 +145,36 @@ class SiteController extends Controller
         }
 
         return $this->render('upload', ['model' => $model]);
+    }
+
+    public function actionForm()
+    {
+        $model = new \yii\base\DynamicModel([
+            'name', 'email', 'address', 'fileImport',
+        ]);
+        $model->addRule(['name','email'], 'required')
+            ->addRule(['email'], 'email')
+            ->addRule(['fileImport'], 'file', ['extensions' => 'ods,xls,xlsx'])
+            ->addRule('address', 'string',['max'=>32]);
+
+        if($model->load(Yii::$app->request->post())&&$model->validate()){
+            // do somenthing with model
+            $databaru = new NilaiBaru();
+            $model->fileImport = \yii\web\UploadedFile::getInstance($model, 'fileImport');
+            $inputFileType = \PHPExcel_IOFactory::identify($model->fileImport->tempName);
+            $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
+            $objPHPExcel = $objReader->load($model->fileImport->tempName);
+            $sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+            $databaru->unit_layanan = $model->email;
+            $databaru->jenis_wilayah = 'Wilayah 3';
+            $databaru->p_1_a_P = (int)$sheetData[12]['D'];
+            if ($databaru->save()){
+                Yii::$app->getSession()->setFlash('success', 'Success');
+            }else{
+                Yii::$app->getSession()->setFlash('error', 'error');
+            }
+            //return $this->render('views',['model'=>$model]);
+        }
+        return $this->render('form', ['model'=>$model]);
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d2be26282d6fa542d45bd6fa7600c20",
+    "content-hash": "ea8c7a7978fee720b311fa9eaa5e43ce",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -134,6 +134,28 @@
             ]
         },
         {
+            "name": "bower-asset/c3",
+            "version": "v0.6.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/c3js/c3.git",
+                "reference": "f83eaaa2f64862ce3786788e1b48678b488862bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/c3js/c3/zipball/f83eaaa2f64862ce3786788e1b48678b488862bf",
+                "reference": "f83eaaa2f64862ce3786788e1b48678b488862bf",
+                "shasum": null
+            },
+            "require": {
+                "bower-asset/d3": ">=5.0.0,<6.0.0"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
             "name": "bower-asset/chartjs",
             "version": "v2.7.3",
             "source": {
@@ -150,6 +172,25 @@
             "type": "bower-asset",
             "license": [
                 "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/d3",
+            "version": "v5.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mbostock-bower/d3-bower.git",
+                "reference": "61fcafaad0cccb3a7121bf8f3657d9dea5b8a97b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mbostock-bower/d3-bower/zipball/61fcafaad0cccb3a7121bf8f3657d9dea5b8a97b",
+                "reference": "61fcafaad0cccb3a7121bf8f3657d9dea5b8a97b",
+                "shasum": null
+            },
+            "type": "bower-asset",
+            "license": [
+                "BSD-3-Clause"
             ]
         },
         {
@@ -2350,6 +2391,57 @@
                 "mailer"
             ],
             "time": "2018-07-31T09:26:32+00:00"
+        },
+        {
+            "name": "yii2mod/yii2-c3-chart",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-c3-chart.git",
+                "reference": "75720eb5bca7a64a2c8b81cc2ce2902894e424be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-c3-chart/zipball/75720eb5bca7a64a2c8b81cc2ce2902894e424be",
+                "reference": "75720eb5bca7a64a2c8b81cc2ce2902894e424be",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/c3": "*",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\c3\\chart\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Chepurnoy",
+                    "email": "igorzfort@gmail.com"
+                }
+            ],
+            "description": "Yii2 wrapper for D3-based reusable chart library",
+            "keywords": [
+                "yii2",
+                "yii2 c3 chart",
+                "yii2 c3.js"
+            ],
+            "time": "2017-03-07T16:49:10+00:00"
         },
         {
             "name": "yii2mod/yii2-sweet-alert",

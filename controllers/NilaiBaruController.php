@@ -174,12 +174,15 @@ class NilaiBaruController extends Controller
     {
         $modelImport = new \yii\base\DynamicModel([
             'fileImport',
+            'keterangan'
         ]);
-        $modelImport->addRule(['fileImport'], 'required')
-            ->addRule(['fileImport'], 'file', ['extensions' => 'ods,xls,xlsx'], ['maxSize' => 1024 * 1024]);
+        $modelImport->addRule(['fileImport', 'keterangan'], 'required')
+            ->addRule(['keterangan'], 'string', ['max' => 32])
+            ->addRule(['fileImport'], 'file', ['extensions' => 'ods,xls,xlsx']);
         if (Yii::$app->request->post()) {
             $modelImport->fileImport = \yii\web\UploadedFile::getInstance($modelImport, 'fileImport');
-            if ($modelImport->fileImport && $modelImport->validate()) {
+            return $this->render('views', ['modelImport' => $modelImport]);
+            /*if ($modelImport->fileImport && $modelImport->validate()) {
                 $inputFileType = \PHPExcel_IOFactory::identify($modelImport->fileImport->tempName);
                 $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
                 $objPHPExcel = $objReader->load($modelImport->fileImport->tempName);
@@ -236,7 +239,7 @@ class NilaiBaruController extends Controller
                 Yii::$app->getSession()->setFlash('success', 'Success');
             } else {
                 Yii::$app->getSession()->setFlash('error', 'Error');
-            }
+            }*/
         }
 
         return $this->render('import', [
